@@ -5,6 +5,15 @@ namespace common\components;
 use Yii;
 use yii\db\Migration;
 
+/**
+ * Class Manager
+ *
+ *      Migration
+ *
+ *  @and_y87
+ *
+ * @package common\components
+ */
 class Manager extends Migration
 {
     const ACTIVE    = 1;
