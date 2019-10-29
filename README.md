@@ -3,15 +3,37 @@
         <img src="https://avatars0.githubusercontent.com/u/993323" height="100px">
     </a>
     <h1 align="center">Yii 2 Manager</h1>
+    Система для построения миграций
     <br>
 </p>
+
+#### Template
+```
+<?php
+
+/**
+ * Class m191029_094215_user__upgrade
+ */
+class m000000_000000_name__addTable extends Manager
+{
+    
+}
+
+```
 
 #### addTable()
 Создание таблицы 
 ```
-public function addTable()
+<?php
+/**
+ * Class m000000_000000_name__addTable
+ */
+class m000000_000000_name__addTable extends Manager
 {
-    return [];
+    public function addTable()
+    {
+        return [];
+    }    
 }
 ```
   
@@ -83,9 +105,16 @@ public function tableTail()
 #### append()
 Добавление колонок
 ```
-public function append()
+<?php
+/**
+ * Class m000000_000000_name__append
+ */
+class m000000_000000_name__append extends Manager
 {
-    return [];
+    public function append()
+    {
+        return [];
+    }    
 }
 ```
 Добавление колонок, к примеру в талицу `news`, через `public`:
@@ -150,12 +179,18 @@ class m....news_blog_profile__appends extend Manager
 #### rename()
 Переименование колонок 
 ```
-public function rename()
+<?php
+/**
+ * Class m000000_000000_name__rename
+ */
+class m000000_000000_name__rename extends Manager
 {
-    return [];
+    public function rename()
+    {
+        return [];
+    }    
 }
 ```
-  
 Переименование колонок, к примеру в таблице `news`, через `public`
 ```
 class m....news__rename extend Manager 
@@ -218,12 +253,18 @@ class m....foo_bar_next__renames extend Manager
 #### upgrade()
 Изменение свойства колонок 
 ```
-public function upgrade()
+<?php
+/**
+* Class m000000_000000_name__upgrade
+*/
+class m000000_000000_name__upgrade extends Manager
 {
-    return [];
+  public function upgrade()
+  {
+      return [];
+  }    
 }
 ```
-  
 Изменение свойства колонок, к примеру в таблице `page`, через `public`
 ```
 class m....news__upgrade extend Manager 
