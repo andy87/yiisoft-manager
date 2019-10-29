@@ -1,5 +1,12 @@
 <?php
 
+/**
+ * Class Example
+ *
+ *      Class
+ *
+ * @and_y87
+ */
 class Example {
 
     public static function test( $obj )
