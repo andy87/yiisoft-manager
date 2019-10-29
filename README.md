@@ -7,20 +7,6 @@
     <br>
 </p>
 
-#### Template
-```
-<?php
-
-/**
- * Class m191029_094215_user__upgrade
- */
-class m000000_000000_name__addTable extends Manager
-{
-    
-}
-
-```
-
 #### addTable()
 Создание таблицы 
 ```
