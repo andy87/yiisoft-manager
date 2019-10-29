@@ -1,0 +1,14 @@
+{
+  "name"        : "Components-Manager",
+  "description" : "Remember `composer clearcache`",
+  "version"     : "1.0.1",
+  "require"     : {
+    "php"         : ">=7.2.0"
+  },
+  "repositories": [
+    {
+      "type"      : "vcs",
+      "url"       : "git@github.com:andy87/yiisoft-migrate-manager.git"
+    }
+  ]
+}
