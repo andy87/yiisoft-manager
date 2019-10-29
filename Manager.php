@@ -1,7 +1,5 @@
 <?php
 
-namespace common\components;
-
 use Yii;
 use yii\db\Migration;
 
