@@ -141,9 +141,11 @@ class Manager extends Migration
     /**
      * То что будет вствлено в начало таблицы.
      *
+     * @param string $tableName
+     *
      * @return array
      */
-    private function tableHead()
+    private function tableHead( $tableName )
     {
         return [
             'id' => $this->primaryKey()
@@ -153,9 +155,11 @@ class Manager extends Migration
     /**
      * То что будет вствлено посте `id`, `status` ...
      *
+     * @param string $tableName
+     *
      * @return array
      */
-    public function afterHead()
+    public function afterHead( $tableName )
     {
         return [];
     }
@@ -169,9 +173,11 @@ class Manager extends Migration
     /**
      * То что будет вствлено перед ... `created_at`.
      *
+     * @param string $tableName
+     *
      * @return array
      */
-    public function beforeTail()
+    public function beforeTail( $tableName )
     {
         return [];
     }
@@ -179,9 +185,11 @@ class Manager extends Migration
     /**
      *  То что будет вствлено в конец таблицы.
      *
+     * @param string $tableName
+     *
      * @return array
      */
-    private function tableTail()
+    private function tableTail( $tableName )
     {
         return [
             'created_at'        => $this->integer(),
