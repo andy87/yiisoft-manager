@@ -1,3 +1,3 @@
 <?php
 
-class_alias(Manager::class, 'andy87\yii2\migrate');
+class_alias(\andy87\yii2\migrate\Manager::class, 'andy87\yii2\migrate');
