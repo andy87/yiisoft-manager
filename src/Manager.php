@@ -145,7 +145,7 @@ class Manager extends Migration
      *
      * @return array
      */
-    private function tableHead( $tableName )
+    public function tableHead( $tableName )
     {
         return [
             'id' => $this->primaryKey()
@@ -189,7 +189,7 @@ class Manager extends Migration
      *
      * @return array
      */
-    private function tableTail( $tableName )
+    public function tableTail( $tableName )
     {
         return [
             'created_at'        => $this->integer(),
