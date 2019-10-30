@@ -28,6 +28,16 @@ composer.json
 ```
 <hr>
 
+<br>
+
+### Порядок выполнения 
+- `addTable()`  
+- `alert()`  
+- `upgrade()`  
+- `rename()`  
+
+<br>
+
 #### addTable()
 Создание таблицы 
 ```
