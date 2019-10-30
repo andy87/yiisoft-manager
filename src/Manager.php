@@ -1,5 +1,7 @@
 <?php
 
+namespace andy87\yii2\migrate;
+
 use Yii;
 use yii\db\Migration;
 
