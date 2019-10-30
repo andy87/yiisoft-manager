@@ -16,8 +16,11 @@ use yii\db\Migration;
  */
 class Manager extends Migration
 {
-    const ACTIVE    = 1;
-    const INACTIVE  = 0;
+    const ACTIVE        = 1;
+    const INACTIVE      = 0;
+
+    private $status     = true;
+    private $dev        = false;
 
 
 
@@ -342,10 +345,18 @@ class Manager extends Migration
      */
     public function up()
     {
+        if ( !$this->status ) exit();
+
         if ( count( $create = $this->addTable() ) )
         {
             $this->coreCreate( $create );
         }
+
+        if ( count( $add = $this->append() ) )
+        {
+            $this->coreAppend( $add );
+        }
+
 
         if ( count( $alert = $this->alert() ) )
         {
@@ -362,10 +373,7 @@ class Manager extends Migration
             $this->coreRename( $rename );
         }
 
-        if ( count( $add = $this->append() ) )
-        {
-            $this->coreAppend( $add );
-        }
+        if ( $this->dev ) exit();
     }
 
     /**
@@ -393,6 +401,7 @@ class Manager extends Migration
         //  если переменная tableName есть то в функциях
         //      coreRename coreAddColumn coreAlert coreUpgrade
         //          не обязательно делать основной ключ с именем таблицы
+
         if ( $this->tableName AND !is_array($arr[0][0]) )
         {
             $scheme = $arr;
@@ -402,24 +411,31 @@ class Manager extends Migration
             $arr[ $this->tableName ] = $scheme;
         }
 
-        foreach ( $arr as $tableName => $items )
+        foreach ( $arr as $tableName => $array )
         {
-            foreach ( $items as $key => $val )
+            foreach ( $array as $key => $val )
             {
-                $table = Yii::$app->db->schema->getTableSchema( $this->tableName );
+                $table = Yii::$app->db->schema->getTableSchema( "{{%{$tableName}}}" );
 
                 if ( $tableName == 'addColumn' AND isset($table->columns[ $key ]) )
                 {
                     continue;
                 }
 
-                $this->$action( "{{%{$tableName}}}", $key, $val );
+                $this->{$action}( "{{%{$tableName}}}", $key, $val );
             }
         }
     }
 
-    public function test()
+
+
+    public function setStatus( $status )
     {
-        exit('xxx');
+        $this->status = $status;
+    }
+
+    public function setDev( $dev )
+    {
+        $this->dev = $dev;
     }
 }
