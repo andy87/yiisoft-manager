@@ -1,5 +1,7 @@
 <?php
 
+namespace andy87\yii2\migrate;
+
 use Yii;
 use yii\db\Migration;
 
@@ -414,5 +416,10 @@ class Manager extends Migration
                 $this->$action( "{{%{$tableName}}}", $key, $val );
             }
         }
+    }
+
+    public function test()
+    {
+        exit('xxx');
     }
 }
