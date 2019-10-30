@@ -231,10 +231,10 @@ class Manager extends Migration
                 ? 'CHARACTER SET utf8 COLLATE utf8_unicode_ci ENGINE=InnoDB'
                 : null;
 
-            $prefix = array_merge( $this->tableHead(), $this->afterHead() );
+            $prefix = array_merge( $this->tableHead( $this->tableName ), $this->afterHead( $this->tableName ) );
             $scheme = array_merge( $prefix, $scheme );
 
-            $tail   = array_merge( $this->beforeTail(), $this->tableTail() );
+            $tail   = array_merge( $this->beforeTail( $this->tableName ), $this->tableTail( $this->tableName ) );
             $scheme = array_merge( $scheme, $tail );
 
             $this->createTable( "{{%{$this->tableName}}}", $scheme, $tableOptions );
