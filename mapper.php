@@ -6,7 +6,7 @@ class_alias(Manager::class, 'andy87\yii2\migrate');
 
 
 $filename   = 'tpl/console_components_Manager.php';
-$filePath   = Yii::getAlias('@console/components/Manager2.php');
+$filePath   = Yii::getAlias('@console/components/Manager.php');
 
 if ( !file_exists($filePath) )
 {
