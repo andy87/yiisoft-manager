@@ -2,6 +2,7 @@
 
 namespace andy87\yii2\migrate\manager;
 
+use Yii;
 use yii\db\Migration;
 
 /**
@@ -15,17 +16,28 @@ use yii\db\Migration;
  */
 class Manager extends Migration
 {
-    const ACTIVE        = 1;
-    const INACTIVE      = 0;
+    const ACTIVE            = 1;
+    const INACTIVE          = 0;
 
-    private $status     = true;
-    private $dev        = false;
+    private $status         = true;
+    private $dev            = false;
+
+    private $engine         = [
+        'addTable'  => 'coreCreate',
+        'append'    => 'coreAppend',
+        'alert'     => 'coreAlert',
+        'upgrade'   => 'coreUpgrade',
+        'rename'    => 'coreRename',
+        'demo'      => 'coreDemo',
+    ];
 
 
 
     public $tableName       = false;
 
     public $tableComment    = false;
+
+
 
 
 
@@ -176,11 +188,9 @@ class Manager extends Migration
     /**
      * То что будет вствлено в начало таблицы.
      *
-     * @param string $tableName
-     *
      * @return array
      */
-    public function tableHead( $tableName )
+    public function tableHead()
     {
         return [
             'id' => $this->primaryKey()
@@ -190,11 +200,10 @@ class Manager extends Migration
     /**
      * То что будет вствлено посте `id`, `status` ...
      *
-     * @param string $tableName
      *
      * @return array
      */
-    public function afterHead( $tableName )
+    public function afterHead()
     {
         return [];
     }
@@ -208,11 +217,9 @@ class Manager extends Migration
     /**
      * То что будет вствлено перед ... `created_at`.
      *
-     * @param string $tableName
-     *
      * @return array
      */
-    public function beforeTail( $tableName )
+    public function beforeTail()
     {
         return [];
     }
@@ -220,11 +227,9 @@ class Manager extends Migration
     /**
      *  То что будет вствлено в конец таблицы.
      *
-     * @param string $tableName
-     *
      * @return array
      */
-    public function tableTail( $tableName )
+    public function tableTail()
     {
         return [
             'created_at'        => $this->integer(),
@@ -266,10 +271,10 @@ class Manager extends Migration
                 ? 'CHARACTER SET utf8 COLLATE utf8_unicode_ci ENGINE=InnoDB'
                 : null;
 
-            $prefix = array_merge( $this->tableHead( $this->tableName ), $this->afterHead( $this->tableName ) );
+            $prefix = array_merge( $this->tableHead(), $this->afterHead() );
             $scheme = array_merge( $prefix, $scheme );
 
-            $tail   = array_merge( $this->beforeTail( $this->tableName ), $this->tableTail( $this->tableName ) );
+            $tail   = array_merge( $this->beforeTail(), $this->tableTail() );
             $scheme = array_merge( $scheme, $tail );
 
             $this->createTable( "{{%{$this->tableName}}}", $scheme, $tableOptions );
@@ -407,35 +412,12 @@ class Manager extends Migration
     {
         if ( !$this->status ) exit();
 
-        if ( count( $create = $this->addTable() ) )
+        foreach( $this->engine as $action => $core )
         {
-            $this->coreCreate( $create );
-        }
-
-        if ( count( $add = $this->append() ) )
-        {
-            $this->coreAppend( $add );
-        }
-
-
-        if ( count( $alert = $this->alert() ) )
-        {
-            $this->coreAlert( $alert );
-        }
-
-        if ( count( $upgrade = $this->upgrade() ) )
-        {
-            $this->coreUpgrade( $upgrade );
-        }
-
-        if ( count( $rename = $this->rename() ) )
-        {
-            $this->coreRename( $rename );
-        }
-
-        if ( count( $rabbit = $this->demo() ) )
-        {
-            $this->coreDemo( $rabbit );
+            if ( count( $arr = $this->{$action}() ) )
+            {
+                $this->{$core}( $arr );
+            }
         }
 
         if ( $this->dev ) exit();
@@ -480,13 +462,6 @@ class Manager extends Migration
         {
             foreach ( $array as $key => $val )
             {
-                $table = Yii::$app->db->schema->getTableSchema( "{{%{$tableName}}}" );
-
-                if ( $tableName == 'addColumn' AND isset($table->columns[ $key ]) )
-                {
-                    continue;
-                }
-
                 $this->{$action}( "{{%{$tableName}}}", $key, $val );
             }
         }

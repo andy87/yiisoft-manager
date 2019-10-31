@@ -3,18 +3,24 @@
         <img src="https://avatars0.githubusercontent.com/u/993323" height="100px">
     </a>
     <h1 align="center">Yii 2 Manager</h1>
-    Система для построения миграций
-    <hr>
 </p>
 
-composer.json  
+Система для построения миграций.  
+***Задача :*** быстро описывать миграции таблиц.
+<hr>
 
+##### INSTALL
+Добавить в `composer.json`  
+<small>require:</small>  
 ```
 "require": {
     ...
     "andy87/yiisoft-migrate-manager" : "1.0.1"
 },
-...
+```  
+<small>repositories</small>  
+
+```
 "repositories": [
     ...,
     {
@@ -36,10 +42,10 @@ composer.json
     }
 ]
 ```
-
+  
 <br>
-
-### Порядок выполнения 
+  
+### Порядок выполнения кода
 - `addTable()`  
 - `alert()`  
 - `upgrade()`  
@@ -48,8 +54,10 @@ composer.json
 
 <br>
 
-#### addTable()
-Создание таблицы 
+### Рабочие методы для построения миграций
+
+##### Создание таблицы
+`addTable()`
 ```
 <?php
 /**
@@ -81,34 +89,30 @@ class m....table_name__add extend Manager
     }
 }
 ```
-#### tableHead()
- - Начало таблицы
+
+Во все генерируемые таблицы из вспомогательных методов вставляется `id, created_at, updated_at`
+
+##### Дабавить строки в начало таблицы
+`tableHead()`
 ```
 public function tableHead()
 {
     return [
-        'id' => $this->integer(7)->notNull()->comment('Айди')
+        'id' => $this->primaryKey()->comment('ID')
     ];
 }
 ```
-#### afterHead()
- - Блок за `id`
+##### Дабавить строки после "tableHead" и перед "addTable"
+`afterHead()`
 ```
 public function afterHead()
 {
     return [];
 }
 ```
-#### addTable()
- - Главный блок - блок за `afterHead` 
-```
-public function addTable()
-{
-    return [];
-}
-```
-#### beforeTail()
- - Блок перед окончанием
+
+##### Блок перед "tableTail" и после "addTable"
+`beforeTail()`
 ```
 public function beforeTail()
 {
@@ -116,8 +120,8 @@ public function beforeTail()
 }
 ```
 
-#### tableTail()
- - Последний блок
+##### Последний блок
+`tableTail()`
 ```
 public function tableTail()
 {
@@ -128,9 +132,11 @@ public function tableTail()
 }
 ```
 
+все эти блоки можно переназначить по необходимости.  
+
 # Редактирование  
   
-#### append()
+##### append()
 Добавление колонок
 ```
 <?php
@@ -204,7 +210,7 @@ class m....news_blog_profile__appends extend Manager
 ```
   
   
-#### rename()
+##### rename()
 Переименование колонок 
 ```
 <?php
@@ -278,7 +284,7 @@ class m....foo_bar_next__renames extend Manager
 ```
   
   
-#### upgrade()
+##### upgrade()
 Изменение свойства колонок 
 ```
 <?php
@@ -352,7 +358,7 @@ class m....foo_bar_next__upgrads extend Manager
 }
 ```
 
-#### demo()  
+##### demo()  
 тестовые данные которые попадут в таблицу после её создания.
 ```
 class m....news__upgrade extend Manager 
