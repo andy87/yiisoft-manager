@@ -1,6 +1,7 @@
 <?php
 
-use Yii;
+namespace andy87\yii2\migrate\manager;
+
 use yii\db\Migration;
 
 /**

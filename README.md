@@ -27,8 +27,9 @@ composer.json
                 "url"                   : "https://github.com/andy87/yiisoft-migrate-manager"
             },
             "autoload": {
-                "classmap": ["src/"],
-                "files": ["mapper.php"]
+                "psr-4": {
+                    "andy87\\yii2\\migrate\\manager\\": "src/console/controllers"
+                }
             }
         }
     }
