@@ -150,26 +150,28 @@ class Manager extends Migration
         return [];
     }
 
-    
+
 
     /**
-     * @param $source
-     * @param $target
+     * @param string $source
+     * @param string $target
+     * @param bool $unique
      */
-    public function addIndex( $source, $target )
+    public function addIndex( $source, $target, $unique = false )
     {
         $this->createIndex(
             "idx-{$source}-{$target}",
             $source,
-            $target
+            $target,
+            $unique
         );
     }
 
     /**
-     * @param $source
-     * @param $target
-     * @param $refTable
-     * @param $refColumns
+     * @param string $source
+     * @param string $target
+     * @param string $refTable
+     * @param string $refColumns
      * @param string $delete
      */
     public function createForeignKey( $source, $target, $refTable, $refColumns, $delete = 'CASCADE')

@@ -46,11 +46,11 @@
 <br>
   
 ### Порядок выполнения кода
-- `addTable()`  
-- `alert()`  
-- `upgrade()`  
-- `rename()`  
-- `demo()`  
+- **`addTable()`**  
+- **`alert()`**  
+- **`upgrade()`**  
+- **`rename()`**  
+- **`demo()`**  
 
 <br>
 
@@ -72,7 +72,7 @@ class m000000_000000_name__addTable extends Manager
 }
 ```
   
-Создание таблицы, к примеру  `members`:
+Создание таблицы, к примеру  *`members`*:
 ```
 class m....table_name__add extend Manager 
 {
@@ -90,10 +90,10 @@ class m....table_name__add extend Manager
 }
 ```
 
-Во все генерируемые таблицы из вспомогательных методов вставляется `id, created_at, updated_at`
+Во все генерируемые таблицы из вспомогательных методов вставляется *`id, created_at, updated_at`*
 
 ##### Дабавить строки в начало таблицы
-`tableHead()`
+**`tableHead()`**  
 ```
 public function tableHead()
 {
@@ -103,7 +103,7 @@ public function tableHead()
 }
 ```
 ##### Дабавить строки после "tableHead" и перед "addTable"
-`afterHead()`
+**`afterHead()`**  
 ```
 public function afterHead()
 {
@@ -112,7 +112,7 @@ public function afterHead()
 ```
 
 ##### Блок перед "tableTail" и после "addTable"
-`beforeTail()`
+**`beforeTail()`**  
 ```
 public function beforeTail()
 {
@@ -121,7 +121,7 @@ public function beforeTail()
 ```
 
 ##### Последний блок
-`tableTail()`
+**`tableTail()`**  
 ```
 public function tableTail()
 {
@@ -136,8 +136,8 @@ public function tableTail()
 
 # Редактирование  
   
-##### append()
-Добавление колонок
+### Добавление колонок
+**`append()`**  
 ```
 <?php
 /**
@@ -151,7 +151,7 @@ class m000000_000000_name__append extends Manager
     }    
 }
 ```
-Добавление колонок, к примеру в талицу `news`, через `public`:
+Добавление колонок, к примеру в талицу *`news`*, через *`public`*:
 ```
 class m....news__append extend Manager 
 {
@@ -167,7 +167,7 @@ class m....news__append extend Manager
 }
 ```
   
-Добавление колонок, к примеру в талицу `blog`,  через `key`:
+Добавление колонок, к примеру в талицу *`blog`*,  через *`key`*:
 ```
 class m....news__append extend Manager 
 {
@@ -185,7 +185,7 @@ class m....news__append extend Manager
 ```
   
   
-##### в несколько таблиц, к примеру `news` + `blog` + `profile`, через `key`
+##### в несколько таблиц, к примеру *`news`* + *`blog`* + *`profile`*, через *`key`*  
 ```
 class m....news_blog_profile__appends extend Manager 
 {
@@ -210,8 +210,8 @@ class m....news_blog_profile__appends extend Manager
 ```
   
   
-##### rename()
-Переименование колонок 
+### Переименование колонок  
+**`rename()`**
 ```
 <?php
 /**
@@ -225,7 +225,7 @@ class m000000_000000_name__rename extends Manager
     }    
 }
 ```
-Переименование колонок, к примеру в таблице `news`, через `public`
+Переименование колонок, к примеру в таблице *`news`*, через *`public`*  
 ```
 class m....news__rename extend Manager 
 {
@@ -240,8 +240,7 @@ class m....news__rename extend Manager
     }
 }
 ```
-  
-Переименование колонок, к примеру в таблице`news`, через `key`
+Переименование колонок, к примеру в таблице *`news`*, через *`key`*  
 ```
 class m....news__rename extend Manager 
 {
@@ -256,9 +255,7 @@ class m....news__rename extend Manager
     }
 }
 ```
-  
-  
-##### в нескольких таблицах, к примеру `news` + `blog` + `profile`, через `key`
+в нескольких таблицах, к примеру *`news`* + *`blog`* + *`profile`*, через *`key`* 
 ```
 class m....foo_bar_next__renames extend Manager 
 {
@@ -284,8 +281,8 @@ class m....foo_bar_next__renames extend Manager
 ```
   
   
-##### upgrade()
-Изменение свойства колонок 
+### Изменение свойства колонок  
+**`upgrade()`**
 ```
 <?php
 /**
@@ -299,7 +296,7 @@ class m000000_000000_name__upgrade extends Manager
   }    
 }
 ```
-Изменение свойства колонок, к примеру в таблице `page`, через `public`
+Изменение свойства колонок, к примеру в таблице *`page`*, через *`public`*  
 ```
 class m....news__upgrade extend Manager 
 {
@@ -314,8 +311,7 @@ class m....news__upgrade extend Manager
     }
 }
 ```
-  
-Переименование колонок, к примеру в таблице `news`, через `key`
+Переименование колонок, к примеру в таблице *`news`*, через *`key`*  
 ```
 class m....news__upgrade extend Manager 
 {
@@ -330,9 +326,7 @@ class m....news__upgrade extend Manager
     }
 }
 ```
-  
-  
-##### в нескольких таблицах, к примеру `news` + `blog` + `profile`, через `key`
+в нескольких таблицах, к примеру *`news`* + *`blog`* + *`profile`*, через *`key`* 
 ```
 class m....foo_bar_next__upgrads extend Manager 
 {
@@ -358,8 +352,9 @@ class m....foo_bar_next__upgrads extend Manager
 }
 ```
 
-##### demo()  
-тестовые данные которые попадут в таблицу после её создания.
+### тестовые данные  
+Вставляются в таблицу после её создания.  
+**`demo()`**  
 ```
 class m....news__upgrade extend Manager 
 {
@@ -396,3 +391,36 @@ class m....news__upgrade extend Manager
     }
 }
 ```
+### Индексы  
+**`addIndex( $table, $columns, $unique )`**  
+Создание index
+```
+$this->createIndex(
+    "idx-{$source}-{$target}",
+    $source,
+    $target,
+    $unique     // Default : false
+);
+
+```
+
+**`createForeignKey( $source, $target, $refTable, $refColumns, $delete)`**  
+Создание foreign key
+```
+$this->addForeignKey(
+    "fk-{$source}-{$target}",
+    $source,
+    $target,
+    $refTable,
+    $refColumns,
+    $delete          // Default : CASCADE
+);
+```
+
+## Вспомогательные методы  
+Если надо останвоить выполнение миграций в рабочем методе вызывается функция: 
+**`setStatus( $status )`**  
+Выходит из миграции в начале *`up()`* невыполняя описанную миграцию  
+
+**`setDev( $status )`**  
+Выходит из миграции в конце *`up()`* выполняя описанную миграцию, но не записывая её как выполненую в таблицу `Migration`  
