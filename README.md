@@ -35,6 +35,7 @@ composer.json
 - `alert()`  
 - `upgrade()`  
 - `rename()`  
+- `demo()`  
 
 <br>
 
@@ -58,7 +59,8 @@ class m000000_000000_name__addTable extends Manager
 ```
 class m....table_name__add extend Manager 
 {
-    public $tableName = 'members';
+    public $tableName = 'member';
+    public $tableComment = 'Участники';
 
     public function addTable()
     {
@@ -335,6 +337,45 @@ class m....foo_bar_next__upgrads extend Manager
             'profile'       => [
                 'role'          => 'integer(1) NULL DEFAULT(2)',
                 'date_time'     => 'string(11) NOT NULL'
+            ]
+        ];
+    }
+}
+```
+
+#### demo()  
+тестовые данные которые попадут в таблицу после её создания.
+```
+class m....news__upgrade extend Manager 
+{
+    public $tableName = 'formula';
+    public $tableComment = 'Формула';
+
+    public function addTable()
+    {
+        return [
+            'foo'           => $this->string(32)->notNull()->comment('первое значение'),
+            'bar'           => $this->string(32)->notNull()->comment('второе значение'),
+            'result'        => $this->string(255)->notNull()->comment('результат'),
+        ];
+    }
+    public function demo()
+    {
+        return [
+            [
+                'foo'           => 'a1',
+                'bar'           => 'b2',
+                'result'        => 'a1b2',
+            ],
+            [
+                'foo'           => 'c3',
+                'bar'           => 'd4',
+                'result'        => 'c3d4',
+            ],
+            [
+                'foo'           => 'e5',
+                'bar'           => 'f6',
+                'result'        => 'e5f6',
             ]
         ];
     }

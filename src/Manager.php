@@ -24,10 +24,9 @@ class Manager extends Migration
 
 
 
+    public $tableName       = false;
 
-
-    public $tableName   = false;
-
+    public $tableComment    = false;
 
 
 
@@ -132,8 +131,45 @@ class Manager extends Migration
         return [];
     }
 
+    /**
+     * @param $source
+     * @param $target
+     */
+    public function addIndex( $source, $target )
+    {
+        $this->createIndex(
+            "idx-{$source}-{$target}",
+            $source,
+            $target
+        );
+    }
 
-    
+    /**
+     * @param $source
+     * @param $target
+     * @param $refTable
+     * @param $refColumns
+     * @param string $delete
+     */
+    public function createForeignKey( $source, $target, $refTable, $refColumns, $delete = 'CASCADE')
+    {
+        $this->addForeignKey(
+            "fk-{$source}-{$target}",
+            $source,
+            $target,
+            $refTable,
+            $refColumns,
+            $delete
+        );
+    }
+
+    public function demo()
+    {
+        return [];
+    }
+
+
+
 
 
     // T A B L E _ H E A D
@@ -238,6 +274,11 @@ class Manager extends Migration
             $scheme = array_merge( $scheme, $tail );
 
             $this->createTable( "{{%{$this->tableName}}}", $scheme, $tableOptions );
+
+            if ( $this->tableComment )
+            {
+                $this->addCommentOnTable( $this->tableName, $this->tableComment);
+            }
         }
     }
 
@@ -266,11 +307,23 @@ class Manager extends Migration
         $this->common( $rename, 'renameColumn' );
     }
 
+    /**
+     * Наполняет базу денными из demo()
+     * @param $rabbit
+     */
+    private function coreDemo( $rabbit )
+    {
+        foreach ( $rabbit as $item )
+        {
+            $this->insert( $this->tableName, $item );
+        }
+    }
 
 
 
 
-    // A D D
+
+    // A P P E N D
 
     /**
      * Ядро добавления колонок.
@@ -345,7 +398,7 @@ class Manager extends Migration
 
 
 
-    // M I G R A T  I O N
+    // Up + Down
 
     /**
      *
@@ -379,6 +432,11 @@ class Manager extends Migration
         if ( count( $rename = $this->rename() ) )
         {
             $this->coreRename( $rename );
+        }
+
+        if ( count( $rabbit = $this->demo() ) )
+        {
+            $this->coreDemo( $rabbit );
         }
 
         if ( $this->dev ) exit();
@@ -437,11 +495,24 @@ class Manager extends Migration
 
 
 
+
+
+    // Set
+    /**
+     * Не выполнять миграцию
+     *
+     * @param $status
+     */
     public function setStatus( $status )
     {
         $this->status = $status;
     }
 
+    /**
+     * Выполнить миграцию и остановить процесс + не записывать в таблицу Migration
+     *
+     * @param $dev
+     */
     public function setDev( $dev )
     {
         $this->dev = $dev;
