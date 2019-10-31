@@ -11,7 +11,7 @@
 
 ##### INSTALL
 Добавить в `composer.json`  
-<small>require:</small>  
+<small>require</small>  
 ```
 "require": {
     ...
@@ -166,7 +166,6 @@ class m....news__append extend Manager
     }
 }
 ```
-  
 Добавление колонок, к примеру в талицу *`blog`*,  через *`key`*:
 ```
 class m....news__append extend Manager 
@@ -183,9 +182,7 @@ class m....news__append extend Manager
     }
 }
 ```
-  
-  
-##### в несколько таблиц, к примеру *`news`* + *`blog`* + *`profile`*, через *`key`*  
+в несколько таблиц, к примеру *`news`* + *`blog`* + *`profile`*, через *`key`*  
 ```
 class m....news_blog_profile__appends extend Manager 
 {
