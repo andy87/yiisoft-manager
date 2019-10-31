@@ -143,6 +143,16 @@ class Manager extends Migration
     }
 
     /**
+     * @return array
+     */
+    public function demo()
+    {
+        return [];
+    }
+
+    
+
+    /**
      * @param $source
      * @param $target
      */
@@ -174,10 +184,6 @@ class Manager extends Migration
         );
     }
 
-    public function demo()
-    {
-        return [];
-    }
 
 
 
