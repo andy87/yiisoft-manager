@@ -35,7 +35,7 @@
             },
             "autoload": {
                 "psr-4": {
-                    "andy87\\yii2\\migrate\\manager\\": "src/console/controllers"
+                    "andy87\\yii2\\manager\\console\\controllers\\": "src/console/controllers"
                 }
             }
         }
