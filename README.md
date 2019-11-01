@@ -35,14 +35,26 @@
             },
             "autoload": {
                 "psr-4": {
-                    "andy87\\yii2\\manager\\console\\controllers\\": "src/console/controllers"
+                    "andy87\\yii2\\manager\\console\\components\\": "src/console/components"
                 }
             }
         }
     }
 ]
 ```
-  
+выполнить: `php composer.phar update`
+
+Создать файл `console/components/Manager.php`
+```
+<?php
+
+namespace console\components;
+
+class Manager extends \andy87\yii2\manager\console\components\Manager
+{
+  // ...
+}
+```
 <br>
   
 ### Порядок выполнения кода
