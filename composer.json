@@ -1,5 +1,5 @@
 {
-  "name"        : "Components-Manager",
+  "name"        : "Manager",
   "description" : "Remember `composer clearcache`",
   "version"     : "1.0.5",
   "require"     : {
@@ -8,7 +8,7 @@
   "repositories": [
     {
       "type"      : "vcs",
-      "url"       : "git@github.com:andy87/yiisoft-migrate-manager.git"
+      "url"       : "git@github.com:andy87/yiisoft-manager.git"
     }
   ]
 }
