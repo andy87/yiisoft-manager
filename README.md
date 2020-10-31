@@ -45,7 +45,7 @@
 выполнить: `php composer.phar update`
 
 Создать файл `console/components/Manager.php`
-```
+```php
 <?php
 
 namespace console\components;
@@ -70,7 +70,7 @@ class Manager extends \andy87\yii2\manager\console\components\Manager
 
 ##### Создание таблицы
 `addTable()`
-```
+```php
 <?php
 /**
  * Class m000000_000000_name__addTable
@@ -85,7 +85,7 @@ class m000000_000000_name__addTable extends Manager
 ```
   
 Создание таблицы, к примеру  *`members`*:
-```
+```php
 class m....table_name__add extend Manager 
 {
     public $tableName = 'member';
@@ -106,7 +106,7 @@ class m....table_name__add extend Manager
 
 ##### Дабавить строки в начало таблицы
 **`tableHead()`**  
-```
+```php
 public function tableHead()
 {
     return [
@@ -116,7 +116,7 @@ public function tableHead()
 ```
 ##### Дабавить строки после "tableHead" и перед "addTable"
 **`afterHead()`**  
-```
+```php
 public function afterHead()
 {
     return [];
@@ -125,7 +125,7 @@ public function afterHead()
 
 ##### Блок перед "tableTail" и после "addTable"
 **`beforeTail()`**  
-```
+```php
 public function beforeTail()
 {
     return [];
@@ -134,7 +134,7 @@ public function beforeTail()
 
 ##### Последний блок
 **`tableTail()`**  
-```
+```php
 public function tableTail()
 {
     return [
@@ -150,7 +150,7 @@ public function tableTail()
   
 ### Добавление колонок
 **`append()`**  
-```
+```php
 <?php
 /**
  * Class m000000_000000_name__append
@@ -164,7 +164,7 @@ class m000000_000000_name__append extends Manager
 }
 ```
 Добавление колонок, к примеру в талицу *`news`*, через *`public`*:
-```
+```php
 class m....news__append extend Manager 
 {
     public $tableName = 'news';
@@ -179,7 +179,7 @@ class m....news__append extend Manager
 }
 ```
 Добавление колонок, к примеру в талицу *`blog`*,  через *`key`*:
-```
+```php
 class m....news__append extend Manager 
 {
     public function append()
@@ -195,7 +195,7 @@ class m....news__append extend Manager
 }
 ```
 в несколько таблиц, к примеру *`news`* + *`blog`* + *`profile`*, через *`key`*  
-```
+```php
 class m....news_blog_profile__appends extend Manager 
 {
     public function append()
@@ -221,7 +221,7 @@ class m....news_blog_profile__appends extend Manager
   
 ### Переименование колонок  
 **`rename()`**
-```
+```php
 <?php
 /**
  * Class m000000_000000_name__rename
@@ -235,7 +235,7 @@ class m000000_000000_name__rename extends Manager
 }
 ```
 Переименование колонок, к примеру в таблице *`news`*, через *`public`*  
-```
+```php
 class m....news__rename extend Manager 
 {
     public $tableName = 'news';
@@ -250,7 +250,7 @@ class m....news__rename extend Manager
 }
 ```
 Переименование колонок, к примеру в таблице *`news`*, через *`key`*  
-```
+```php
 class m....news__rename extend Manager 
 {
     public function rename()
@@ -265,7 +265,7 @@ class m....news__rename extend Manager
 }
 ```
 в нескольких таблицах, к примеру *`news`* + *`blog`* + *`profile`*, через *`key`* 
-```
+```php
 class m....foo_bar_next__renames extend Manager 
 {
     public function rename()
@@ -292,7 +292,7 @@ class m....foo_bar_next__renames extend Manager
   
 ### Изменение свойства колонок  
 **`upgrade()`**
-```
+```php
 <?php
 /**
 * Class m000000_000000_name__upgrade
@@ -306,7 +306,7 @@ class m000000_000000_name__upgrade extends Manager
 }
 ```
 Изменение свойства колонок, к примеру в таблице *`page`*, через *`public`*  
-```
+```php
 class m....news__upgrade extend Manager 
 {
     public $tableName = 'page';
@@ -321,7 +321,7 @@ class m....news__upgrade extend Manager
 }
 ```
 Переименование колонок, к примеру в таблице *`news`*, через *`key`*  
-```
+```php
 class m....news__upgrade extend Manager 
 {
     public function upgrade()
@@ -336,7 +336,7 @@ class m....news__upgrade extend Manager
 }
 ```
 в нескольких таблицах, к примеру *`news`* + *`blog`* + *`profile`*, через *`key`* 
-```
+```php
 class m....foo_bar_next__upgrads extend Manager 
 {
     public function upgrade()
@@ -364,7 +364,7 @@ class m....foo_bar_next__upgrads extend Manager
 ### тестовые данные  
 Вставляются в таблицу после её создания.  
 **`demo()`**  
-```
+```php
 class m....news__upgrade extend Manager 
 {
     public $tableName = 'formula';
@@ -403,7 +403,7 @@ class m....news__upgrade extend Manager
 ### Индексы  
 **`addIndex( $table, $columns, $unique )`**  
 Создание index
-```
+```php
 $this->createIndex(
     "idx-{$source}-{$target}",
     $source,
@@ -415,7 +415,7 @@ $this->createIndex(
 
 **`createForeignKey( $source, $target, $refTable, $refColumns, $delete)`**  
 Создание foreign key
-```
+```php
 $this->addForeignKey(
     "fk-{$source}-{$target}",
     $source,
